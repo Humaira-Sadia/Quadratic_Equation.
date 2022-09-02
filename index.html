@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadratic Equation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="main">
+        <div class="h1">
+            <h1><i>Quadratic Equation </i> <br></h1>
+        </div>
+        <div class="h2">
+            <p>Please enter the cofficients <strong> A </strong>,<strong> B </strong>,<strong> C </strong> of a
+                Quadratic Equation in the form of <strong>(Ax&#x00B2; + Bx + C = 0) </strong></p>
+        </div>
+        <div>
+            <form action="javascript:validate();" class="f1" name="input_form" required>
+                <input type="text" class="btn1" placeholder="A" name="aterm" size="7" required> x&#x00B2 +
+                <input type="text" class="btn1" placeholder="B" name="bterm" size="7" required> x +
+                <input type="text" class="btn1" placeholder="C" name="cterm" size="7" required> = 0
+                <br><br>
+                <output id="output_text"></output>
+                <br>
+                <input type="submit" class="btn" value="Calculate">
+                <button class="btn" onclick="window.location.reload();">Clear</button>
+                
+            </form>
+            
+        </div>
+    </div>
+    <div class="end">
+        <h2><i>Created by Humaira.</i></h2>
+    </div>
+    <script>
+        var A, B, C, x1, x2;
+        var output;
+
+        function validate() {
+            A = document.forms["input_form"]["aterm"].value;
+            B = document.forms["input_form"]["bterm"].value;
+            C = document.forms["input_form"]["cterm"].value;
+
+            if (A == 0) {
+                outputText = "<em>a</em> cannot eqaul to zero";
+            }
+            else if (isNaN(A)) {
+                outputText = "<em>a</em> must be a number";
+            }
+            else if (isNaN(B)) {
+                outputText = "<em>b</em> must be a number";
+            }
+            else if (isNaN(C)) {
+                outputText = "<em>c</em> must be a number";
+            }
+            else {
+                x1 = (-B + Math.sqrt(Math.pow(B, 2) - 4 * A * C)) / (2 * A);
+                x2 = (-B - Math.sqrt(Math.pow(B, 2) - 4 * A * C)) / (2 * A);
+                var sqrt = Math.pow(B, 2) - 4 * A * C;
+
+                if (sqrt >= 0) {
+                    outputText = "value of x is " + x1 + "  or  " + x2;
+                }
+                else {
+                    outputText = "Imaginary Number. Please try with other cofficients";
+                }
+            }
+            document.getElementById("output_text").innerHTML = outputText;
+            console.clear();
+        }
+    </script>
+</body>
+
+</html>
